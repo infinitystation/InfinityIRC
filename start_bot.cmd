@@ -1,0 +1,1 @@
+escript bot_start

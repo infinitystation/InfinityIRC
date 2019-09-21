@@ -484,12 +484,14 @@ handle_ircpm(ID, SK,SC, Rank, Target, Chan, Msg) ->
 	handle_admin_message(ID, Pre, Chan, Msg).
 
 handle_admin_message(ID, Pre, Chan, Mesg) ->
-	Msg = re:replace(Mesg, "[\r\n\t]+", " ", [global, {return, list}]),
+	MsgRaw = re:replace(Mesg, "[\r\n\t]+", " ", [global, {return, list}]),
+	Msg = decode_from_server(ID, MsgRaw),
 	ahelp_record(ID, [Pre, Msg]),
 	sendmsg(Chan, lists:filter(fun(T)->T/=none end, lists:flatten([Pre,Msg]))).
 
 handle_msg(ID, Chan, Mesg) ->
-	Msg = re:replace(Mesg, "[\r\n\t]+", " ", [global, {return, list}]),
+	MsgRaw = re:replace(Mesg, "[\r\n\t]+", " ", [global, {return, list}]),
+  Msg = decode_from_server(ID, MsgRaw),
 	case Msg of
 		"Server starting up on " ++ _ ->
 			lists:foreach(fun(T) -> core ! {irc, {msg, {T, [ID, $:, $ , Msg]}}} end, config:get_value(temp, [?MODULE, notify, ID], [])),

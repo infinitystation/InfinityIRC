@@ -1,0 +1,9 @@
+#include "util.dm"
+/world/loop_checks = 0
+
+
+/world/New()
+	dm_eval()
+	del(src)
+/proc/dm_eval()
+	world.log << "[{var/shit = 5}]"
