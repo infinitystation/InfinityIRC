@@ -4,3 +4,4 @@ mod/bin/
 logs/
 config/
 data/
+dm/*.dme
