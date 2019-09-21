@@ -5,3 +5,4 @@ logs/
 config/
 data/
 dm/*.dme
+dm/*.int
