@@ -1,19 +1,18 @@
 An IRC bot, built in Erlang.
+IRC бот, на Erlang
 
-# Configuration:
-`!c <expression> [, <expression> [, <expression [...]]]`  
-`<expression>` is either `<path>` or `<path> = <value>`, in Erlang syntax; paths are lists.
+# Конфигурация:
+`!c <выражение> [, <выражение> [, <выражение [...]]]`  
+`<выражение>` либо `<путь>` или `<путь> = <значение>`, в синтаксисе Erlang; пути это списки.
 
-For example, to instruct the bot to join a list of channels at startup:  
+Например, чтобы поручить боту присоединиться к списку каналов при запуске:  
 `!c [bot,channels] = ["#channel", "#otherchannel", "#thirdchannel"]`
 
-# Starting the bot:
-`$ bot_start -s<server> -p<port> -t<transport>`  
-Server, port, and transport default to the values in config/core.crl, which should be in the following format (entries can be skipped if desired):  
-`[{port,6667}, {server,"irc.example.com"}, {transport,gen_tcp}].` - this is irc.example.com:6667, without SSL  
-`[{port,6697}, {server,"irc.whatever.net"}, {transport,ssl}].` - irc.whatever.net:6697, with SSL
+# Запуск бота:
+В папке бота пропишите:
+`start_bot.cmd`
 
-# Starting the bot from the shell:
+# Запуск через BASH:
 ```
 1> c(loader).
 {ok,loader}.
